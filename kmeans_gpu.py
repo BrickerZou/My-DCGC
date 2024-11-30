@@ -90,7 +90,7 @@ def kmeans_predict(
         X,
         cluster_centers,
         distance='euclidean',
-        device=torch.device('cuda')
+        device=torch.device('mps')
 ):
     """
     predict using cluster centers
@@ -137,7 +137,7 @@ def pairwise_distance(data1, data2, device=torch.device('mps')):
     return dis
 
 
-def pairwise_cosine(data1, data2, device=torch.device('cuda')):
+def pairwise_cosine(data1, data2, device=torch.device('mps')):
     # transfer to device
     data1, data2 = data1.to(device), data2.to(device)
 

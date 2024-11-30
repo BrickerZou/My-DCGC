@@ -129,7 +129,7 @@ for args.dataset in ["cora"]:
                     best_ari = ari
                     best_f1 = f1
 
-        tqdm.write('Best acc: {}, nmi: {}, ari: {}, f1: {}'.format(best_acc, best_nmi, best_ari, best_f1))
+        tqdm.write('Current Seed: Best acc: {}, nmi: {}, ari: {}, f1: {}'.format(best_acc, best_nmi, best_ari, best_f1))
         acc_list.append(best_acc)
         nmi_list.append(best_nmi)
         ari_list.append(best_ari)
@@ -139,6 +139,7 @@ for args.dataset in ["cora"]:
     nmi_mean, nmi_std = np.mean(nmi_list), np.std(nmi_list)
     ari_mean, ari_std = np.mean(ari_list), np.std(ari_list)
     f1_mean, f1_std = np.mean(f1_list), np.std(f1_list)
+    print("*****Mean and std of 3 runs*****")
     print("Accuracy: {:.2f} ± {:.2f}".format(acc_mean, acc_std))
     print("NMI: {:.2f} ± {:.2f}".format(nmi_mean, nmi_std))
     print("ARI: {:.2f} ± {:.2f}".format(ari_mean, ari_std))
