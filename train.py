@@ -110,11 +110,12 @@ for args.dataset in ["cora"]:
             model.train()
             z1, z2 = model(fea, is_train=True, sigma=args.sigma)
             S = z1 @ z2.T
+            # 对比相似度矩阵和邻接矩阵的差异
             loss = F.mse_loss(S, target_adj)
             loss.backward()
             optimizer.step()
 
-            if epoch % 10 == 0:
+            if (epoch+1) % 10 == 0:
                 model.eval()
                 # 生成两个不同视图的嵌入
                 z1, z2 = model(fea, is_train=False, sigma=args.sigma)
@@ -128,7 +129,7 @@ for args.dataset in ["cora"]:
                     best_ari = ari
                     best_f1 = f1
 
-        tqdm.write('acc: {}, nmi: {}, ari: {}, f1: {}'.format(best_acc, best_nmi, best_ari, best_f1))
+        tqdm.write('Best acc: {}, nmi: {}, ari: {}, f1: {}'.format(best_acc, best_nmi, best_ari, best_f1))
         acc_list.append(best_acc)
         nmi_list.append(best_nmi)
         ari_list.append(best_ari)
